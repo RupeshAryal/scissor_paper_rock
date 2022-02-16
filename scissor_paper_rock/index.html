@@ -6,16 +6,26 @@
         scissor-paper-rock
     </title>
     <link rel="stylesheet" href="style.css">
-    <script src="javascript.js"></script>
+    
+
     
 </head>
 
 <body>
-    <div class="buttons">
-        <button><img src="images/scissor.png" alt="" srcset=""></button>
-        <button><img src="images/paper.png" alt="" srcset=""></button>
-        <button><img src="images/rock.jpeg" alt="" srcset=""></button>
-    </div>
+        <div></div>
+        <div class="ButtonStore"> 
+            <button  class="button" onclick="play('scissor')"><img src="images/scissor.png" alt="scissor" srcset=""></button>
+            <button class="button"  onclick="play('paper')"><img src="images/paper.png" alt="paper" srcset=""></button>
+            <button  class="button" onclick="play('rock')"><img src="images/rock.jpeg" alt="rock" srcset=""></button>
+        </div>
+
+        <div class="SecondaryButton">
+        </div>
+    
+        <div class="textshow"></div>
+        <div class="DOMentry"></div>
+        <div class="ScoreDisplay"></div>
+        <script src="javascript.js"></script>
     
 </body>
 

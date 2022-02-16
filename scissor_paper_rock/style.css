@@ -4,28 +4,31 @@
 }
 
 body{
-    display: flex;
+    
     justify-content: center;
     align-items: center;
-    height :100vh;
+    min-height :100%;
     background-color: #faf8f7;
     
 }
 
-.buttons{
-    display: flex;
-    gap: 15px;
-    margin: 0px;
-    padding: 0px;
-    
-}
+/*.buttons{
+/*    display: flex;
+/*    justify-content: center;
+/*    align-items: center;
+/*    height: 20vim;
+/*    gap: 15px;
+/*    margin: 0px;
+/*    padding: 0px;
+/*    
+/*}*/
 img{
     height: 100%;
     width: 100%;
     border-radius: 10px;
     
 }
-button{
+.button{
     height: 120px;
     width: 120px;
     border-radius: 10px;

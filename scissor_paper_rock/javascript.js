@@ -1,66 +1,73 @@
-let countHuman=0;
-        let coundComputer=0
-        function human(){
-         let input = prompt("enter your object");
-         
-        input = input.toLowerCase();
-        if (input == 'rock' || input == 'paper' || input == 'scissor') 
-        {
-            return input; 
-        }
-        else
-        {
-            alert("enter a valid object");
-         return human();
-        }
+let HumanScore = 0;
+let ComputerScore = 0;
+const display = document.querySelector('.textshow');
+const secondDisplay = document.querySelector('.DOMentry');
+const score = document.querySelector('.ScoreDisplay');
+const ButtonDisable = document.querySelectorAll('.button');
+const CreateButton = document.createElement('button');
+CreateButton.innerHTML = 'try again';
+console.log(CreateButton);
+
+CreateButton.addEventListener('click', ()=>{
+    ButtonDisable.forEach((selectedButton)=>{
+        selectedButton.disabled = false;
+        secondDisplay.innerHTML = '';
+        display.innerHTML = 'please select a object to start';
+    })
+})
+function computer() {
+    let options = ['scissor','paper', 'rock']
+    return options[Math.floor(Math.random()*options.length)];
+}
+   
+function play(playerSelection) {
+    let computerSelection = computer();
+    if (playerSelection===computerSelection) {
+        result(playerSelection, computerSelection,HumanScore, ComputerScore);
+        secondDisplay.innerHTML = "<br><br>tie";
     }
-        
+    else if((playerSelection == 'rock'&&computerSelection=='scissor')||(playerSelection == 'scissor' && computerSelection == 'paper')||(playerSelection=='paper'&&computerSelection=='rock')){
+         
+        secondDisplay.innerHTML = '<br><br>human';
+        HumanScore++;
+        result(playerSelection, computerSelection,HumanScore, ComputerScore);
+    }
+    else {secondDisplay.innerHTML= '<br><br>computer';
+   
+    ComputerScore++;
+    result(playerSelection, computerSelection,HumanScore, ComputerScore);
+    }
+
+    GameEnd(HumanScore, ComputerScore);
     
-    function computer() {
-       let  computer1=Math.floor(Math.random()*3);
-        if (computer1==0) {
-            computer1="rock";
-        }
-        else if (computer1==1) {
-            computer1 = "paper"; 
+}
+
+function result(a,b,c,d){
+    display.innerHTML="you selected " + " " + a +  " <br> computer selecter   " + "  " + b;
+    score.innerHTML= "human " + c + "computer " + d;
+}
+
+function GameEnd(playerscore, comptscore) {
+    if(playerscore==5 || comptscore == 5)
+    {  ButtonDisable.forEach((discord)=>{
+        discord.disabled= true;
+    })
+    
+        if (playerscore==5) {
+            score.innerHTML = '';
+            display.innerHTML = 'human won' + HumanScore + '-' + ComputerScore;
+            HumanScore = 0;
+            ComputerScore = 0;
+            secondDisplay.appendChild(CreateButton)
         }
         else
         {
-            computer1= "scissor";
+            score.innerHTML = '';
+            display.innerHTML = 'computer  won' + ComputerScore + '-' + HumanScore;
+            HumanScore = 0;
+            ComputerScore = 0;
+            secondDisplay.appendChild(CreateButton)
         }
-       return computer1;  
-    }   
-        
-    function play(a,b) {
-        //console.log("you selected " +a);
-                //console.log("computer selected " +b);
-                if ((a=='rock'&&b=='rock') || (a=='scissor' && b=='scissor') || (a=='paper' && b== 'paper')) {
-                    console.log("its a tie");
-                }
+}
+}
 
-                else if ((a=='rock' && b== 'scissor') || (a=='scissor' && b=='paper') || (a=='paper' && b=='rock')) {
-                    countHuman++;
-                    //console.log("human won");
-                }
-
-                else
-                coundComputer++
-                //console.log("computer won");
-            }
-            
-
-            //console.log(human());
-            //console.log("computer selected " +computer());
-           while (countHuman<5 && coundComputer<5) {
-        
-            play(human(), computer());
-            
-            console.log("human : " +countHuman + " " + "computer :" + coundComputer);
-            
-           }
-
-           if (countHuman==5) {
-               console.log("human won");
-           }
-           else
-            console.log("computer won");
