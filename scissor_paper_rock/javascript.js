@@ -8,19 +8,20 @@ const CreateButton = document.createElement('button');
 CreateButton.innerHTML = 'try again';
 console.log(CreateButton);
 
+buttonDisabledTrue();
+
 CreateButton.addEventListener('click', ()=>{
-    ButtonDisable.forEach((selectedButton)=>{
-        selectedButton.disabled = false;
+        buttonDisabledFalse();
         secondDisplay.innerHTML = '';
         display.innerHTML = 'please select a object to start';
     })
-})
-function computer() {
+function computer() {                          //this function generate a random selection from the computer
     let options = ['scissor','paper', 'rock']
     return options[Math.floor(Math.random()*options.length)];
 }
    
-function play(playerSelection) {
+function play(playerSelection) {                //this function start the game 
+    
     let computerSelection = computer();
     if (playerSelection===computerSelection) {
         result(playerSelection, computerSelection,HumanScore, ComputerScore);
@@ -47,12 +48,10 @@ function result(a,b,c,d){
     score.innerHTML= "human " + c + "computer " + d;
 }
 
-function GameEnd(playerscore, comptscore) {
+function GameEnd(playerscore, comptscore) {             //this function marks the end of the function when the score reaches 5
     if(playerscore==5 || comptscore == 5)
-    {  ButtonDisable.forEach((discord)=>{
-        discord.disabled= true;
-    })
-    
+    {  
+        buttonDisabledTrue();                           //buttons are disabled at this point
         if (playerscore==5) {
             score.innerHTML = '';
             display.innerHTML = 'human won' + HumanScore + '-' + ComputerScore;
@@ -70,4 +69,41 @@ function GameEnd(playerscore, comptscore) {
         }
 }
 }
+
+const start = document.createElement('button');
+const clear = document.createElement('button');
+clear.innerHTML = "clear";
+start.innerHTML = "start game";
+const startButtonDisplay = document.querySelector('.SecondaryButton');
+startButtonDisplay.append(start);
+startButtonDisplay.appendChild(clear);
+clear.addEventListener('click', ()=>{
+    clearScore();
+})
+start.addEventListener('click', ()=>{
+    buttonDisabledFalse();
+})
+
+function buttonDisabledTrue() {           //this function disable the main three button
+    ButtonDisable.forEach((discord)=>{
+        discord.disabled= true;
+    })
+}
+
+function buttonDisabledFalse() {           //this function enable the main three button
+    ButtonDisable.forEach((discord)=>{
+        discord.disabled= false;
+    })
+}
+
+function clearScore() {
+    HumanScore = 0;
+    ComputerScore = 0;
+    score.innerHTML= "human " + HumanScore + "computer " + ComputerScore;
+}
+
+clear.setAttribute('style', 'width: 120px; height:40px; background-color: orange; border-radius:10px; color:white; font-size: 100;');
+start.setAttribute('style', 'width: 120px; height:40px; background-color: orange; border-radius:10px; color:white; font-size: 100;');
+
+
 
